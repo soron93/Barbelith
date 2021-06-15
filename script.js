@@ -15,17 +15,33 @@ let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
 let gameOver = false;
 let intervalId = null
-let ballX = 250, ballY = 250, radius = 20
+let ballX = canvas.width / 2, ballY = 50, radius = 20
 let isLeft = false, isRight = false
 let counter = 0;
+let score = 0;
 let currentBlocks = [];
-let incrX = 3, incrY = 3
+let incrX = 3, incrY = 3;
+let blockHeight = 20;
+let obsticles = []
 
 
+function createBlocks() {
+
+    if (counter == 60) {
+        let block = {
+            width: Math.floor(Math.random() * 75 + 75),
+            x: Math.floor(Math.random() * (canvas.width - 150)),
+            y: canvas.height,
+        }
+
+        obsticles.push(block)
+        counter = 0
+    } else {
+        counter++
+    }
 
 
-
-
+}
 
 function drawBall() {
     ctx.beginPath()
@@ -35,58 +51,42 @@ function drawBall() {
     ctx.closePath()
 }
 
+//blocks
+function drawBlocks() {
+    for (let i = 0; i < obsticles.length; i++) {
+        ctx.beginPath()
+        ctx.fillStyle = 'black'
+        ctx.fillRect(obsticles[i].x, obsticles[i].y, obsticles[i].width, blockHeight)
+        ctx.closePath()
+        obsticles[i].y -= 8
+        if (ballX > obsticles[i].x && ballX < obsticles[i].x + obsticles[i].width && ballY + radius > obsticles[i].y && ballY + radius < blockHeight + obsticles[i].y) {
+            gameOver = true
+            if (gameOver == true) {
+                alert("Game Over")
+                document.location.reload();
+                clearInterval(interval);
+            }
+        }
 
-
-// //blocks
-// function drawBlocks() {
-//     ctx.beginPath()
-//     ctx.fillStyle = '#yellow'
-//     ctx.fillRect(200, 500, 1500, 20)
-//     ctx.closePath()
-// }
-
-
-
-
-
-
-
-// if (isRight && ballX < canvas.width) {
-//     ballX = ballX + 10
-// }
-// if (isLeft && ballX > 0) {
-//     ballX = ballX - 10
-// }
-
-function collision() {
-    if (isRight) {
-        ballX = ballX + incrX
     }
-    if (isLeft) {
-        ballX = ballX - incrY
-    }
-
-    //right
-    //     if (ballX + radius > canvas.width) {
-    //         incrX = -incrX
-    //     }
-
-    //     //left 
-    //     if (ballX - radius < 0) {
-    //         incrY = -2
-    //     }
-
-    // }
-
-
-    // function moveBall() {
-    //     ctx.beginPath()
-    //     ctx.closePath()
-    // }
-
-    // function collision() {
-
 }
+
+
+function checkScore() {
+    for (let i = 0; i < obsticles.length; i++) {
+        if (obsticles[i].y < 0) {
+            score++
+            obsticles.splice(i, 1)
+
+        }
+    }
+}
+
+
+
+
+
+
 
 
 
@@ -95,24 +95,32 @@ function collision() {
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+
+    ctx.fillStyle = 'white'
+    ctx.font = '22px Veranda'
+    ctx.fillText(`Score: ${score}`, 20, 20)
+
+
+
+
     //Draw Ball
     drawBall()
-    ballX = ballX + incrX
-    ballX = ballX - incrY
+    // ballX = ballX + incrX
+    // ballX = ballX - incrX
 
-    if (isRight && ballX < canvas.width) {
+    if (isRight && ballX < canvas.width - radius) {
         ballX = ballX + 10
     }
-    if (isLeft && ballX > 0) {
+    if (isLeft && ballX > radius) {
         ballX = ballX - 10
     }
 
+    createBlocks()
 
-    // drawBlocks()
+    drawBlocks()
 
+    checkScore()
 
-    //collision
-    collision()
 
 
 
@@ -129,13 +137,16 @@ function animate() {
 
 
 
-
 function start() {
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'
     startBtn.style.display = 'none'
     animate()
 }
+
+// function retstart() {
+
+// }
 
 // All event funcitons wll begin in the windows event load listener
 window.addEventListener('load', () => {
@@ -172,13 +183,12 @@ window.addEventListener('load', () => {
         start()
     })
 
-    // startBtn.addEventListener('keydown', (event) => {
-    //     if (event.code === 40) {
-    //         start()
-    //     }
-    // })
+
 
     restartBtn.addEventListener('click', () => {
+        restart()
+
+
 
     })
 })
