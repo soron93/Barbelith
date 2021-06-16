@@ -1,22 +1,27 @@
-#style {
-    
+@font-face {
+
+  font-family: "graffiti";
+
+  src: url(./fonts/Graffiti\ City.otf);
 }
 
-.block{
-    width: 400px;
-    height: 20px;
-    background-color: black;
-    position: relative;
-    top: 100px;
-    margin-top: -20px;
+p {
+  font-family: "graffiti";
+  font-size: 40px;;
+
 }
-.hole{
-    width: 40px;
-    height: 20px;
-    background-color: white;
-    position: relative;
-    top: 100px;
-    margin-top: -20px;
+
+button {
+  font-family: "graffiti";
+  font-size: 40px;
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  /* font-size: 16px; */
+  cursor: pointer;
+  display: inline-block;
+
+
 }
 
 body {
@@ -24,6 +29,7 @@ body {
     background: linear-gradient(#333, white) no-repeat;
   }
   
+
   #startScreen {
     margin: auto;
     margin-top: 250px;
@@ -49,12 +55,8 @@ img {
 }
 
   canvas {
-    /* padding: 0; */
     margin: auto;
     display: block;
-    /* width: 800px;
-    height: 600px;
-    position: absolute; */
     top: 0;
     bottom: 0;
     left: 0;
@@ -104,8 +106,8 @@ img {
   }
   
   #gameOn {
+  font-family: "graffiti";
     font-size: 100px;
     text-align: center;
     text-shadow: 0 2px 0 black, 0 1px 64px white;
-    /* animation: pulse 1.5s linear infinite; */
   }

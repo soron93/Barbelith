@@ -13,6 +13,7 @@ let ctx = canvas.getContext('2d');
 // DOM start & restart buttons
 let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
+let theEnd = document.querySelector('#gameOver')
 let gameOver = false;
 let intervalId = null
 let ballX = canvas.width / 2, ballY = 50, radius = 20
@@ -24,15 +25,23 @@ let incrX = 3, incrY = 3;
 let blockHeight = 20;
 let obsticles = []
 
+
+
 let startAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/Zander%20Noriega%20-%20Darker%20Waves.mp3.ogg")
 let gameOverAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/tnt.mp3.ogg")
+
+startAudio.volume = 0.3;
+gameOverAudio.volume = 0.3;
+
+
+// YOUR_AUDIO_VARIABLE.volume = 0.1
 
 function createBlocks() {
 
     if (counter == 60) {
         let block = {
-            width: Math.floor(Math.random() * 75 + 75),
-            x: Math.floor(Math.random() * (canvas.width - 150)),
+            width: Math.floor(Math.random() * 120 + 75),
+            x: Math.floor(Math.random() * (canvas.width - 15)),
             y: canvas.height,
         }
 
@@ -63,13 +72,7 @@ function drawBlocks() {
         obsticles[i].y -= 8
         if (ballX > obsticles[i].x && ballX < obsticles[i].x + obsticles[i].width && ballY + radius > obsticles[i].y && ballY + radius < blockHeight + obsticles[i].y) {
             gameOver = true
-            if (gameOver == true) {
-                document.body.innerHTML = "<h1 id='gameOn'>Game Over!!!</h1>"
-                // alert("Game Over")
-                // document.location.reload();
-                // clearInterval(interval);
 
-            }
         }
 
     }
@@ -132,6 +135,7 @@ function animate() {
         cancelAnimationFrame(intervalId)
         canvas.style.display = 'none'
         restartBtn.style.display = 'block'
+        theEnd.style.display = 'block'
         startAudio.pause()
         gameOverAudio.play()
     } else {
@@ -143,22 +147,20 @@ function animate() {
 
 
 
-
 function start() {
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'
+    theEnd.style.display = 'none'
     startBtn.style.display = 'none'
+    info.style.display = 'none'
     // startScreen.style.disply = 'none'
     animate()
     startAudio.play()
 }
 
-function retstart() {
-    canvas.style.display = 'block'
-    restartBtn.style.display = 'block'
-    startBtn.style.display = 'none'
-    animate()
-    startAudio.play()
+function restart() {
+    location.reload()
+
 
 }
 
@@ -167,7 +169,7 @@ window.addEventListener('load', () => {
 
     canvas.style.display = 'none' // hides canvas
     restartBtn.style.display = 'none' // hide restart button
-
+    theEnd.style.display = 'none'
 
     document.addEventListener('keydown', (event) => {
         if (event.code == 'ArrowRight') {
