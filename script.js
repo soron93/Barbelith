@@ -24,8 +24,8 @@ let incrX = 3, incrY = 3;
 let blockHeight = 20;
 let obsticles = []
 
-let startAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/Kim%20Lightyear%20-%20Falling%20Stars.mp3.ogg")
-let gameOverAudio = new Audio("https://opengameart.org/sites/default/files/bzzzt.ogg")
+let startAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/Zander%20Noriega%20-%20Darker%20Waves.mp3.ogg")
+let gameOverAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/tnt.mp3.ogg")
 
 function createBlocks() {
 
@@ -131,7 +131,7 @@ function animate() {
     if (gameOver) {
         cancelAnimationFrame(intervalId)
         canvas.style.display = 'none'
-        restartBtn.style.display = 'none'
+        restartBtn.style.display = 'block'
         startAudio.pause()
         gameOverAudio.play()
     } else {
@@ -148,11 +148,17 @@ function start() {
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'
     startBtn.style.display = 'none'
+    // startScreen.style.disply = 'none'
     animate()
     startAudio.play()
 }
 
 function retstart() {
+    canvas.style.display = 'block'
+    restartBtn.style.display = 'block'
+    startBtn.style.display = 'none'
+    animate()
+    startAudio.play()
 
 }
 
@@ -197,7 +203,7 @@ window.addEventListener('load', () => {
 
 
     restartBtn.addEventListener('click', () => {
-        // restart()
+        restart()
 
 
 

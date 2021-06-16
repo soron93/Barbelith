@@ -106,6 +106,6 @@ img {
   #gameOn {
     font-size: 100px;
     text-align: center;
-    text-shadow: 0 2px 0 #a30505, 0 1px 64px white;
-    animation: pulse 1.5s linear infinite;
+    text-shadow: 0 2px 0 black, 0 1px 64px white;
+    /* animation: pulse 1.5s linear infinite; */
   }
