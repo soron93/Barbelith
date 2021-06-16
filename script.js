@@ -24,6 +24,8 @@ let incrX = 3, incrY = 3;
 let blockHeight = 20;
 let obsticles = []
 
+let startAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/Kim%20Lightyear%20-%20Falling%20Stars.mp3.ogg")
+let gameOverAudio = new Audio("https://opengameart.org/sites/default/files/bzzzt.ogg")
 
 function createBlocks() {
 
@@ -62,9 +64,11 @@ function drawBlocks() {
         if (ballX > obsticles[i].x && ballX < obsticles[i].x + obsticles[i].width && ballY + radius > obsticles[i].y && ballY + radius < blockHeight + obsticles[i].y) {
             gameOver = true
             if (gameOver == true) {
-                alert("Game Over")
-                document.location.reload();
-                clearInterval(interval);
+                document.body.innerHTML = "<h1 id='gameOn'>Game Over!!!</h1>"
+                // alert("Game Over")
+                // document.location.reload();
+                // clearInterval(interval);
+
             }
         }
 
@@ -126,8 +130,11 @@ function animate() {
 
     if (gameOver) {
         cancelAnimationFrame(intervalId)
-    }
-    else {
+        canvas.style.display = 'none'
+        restartBtn.style.display = 'none'
+        startAudio.pause()
+        gameOverAudio.play()
+    } else {
         intervalId = requestAnimationFrame(animate)
     }
 
@@ -142,11 +149,12 @@ function start() {
     restartBtn.style.display = 'none'
     startBtn.style.display = 'none'
     animate()
+    startAudio.play()
 }
 
-// function retstart() {
+function retstart() {
 
-// }
+}
 
 // All event funcitons wll begin in the windows event load listener
 window.addEventListener('load', () => {
@@ -168,6 +176,9 @@ window.addEventListener('load', () => {
         document.addEventListener('keyup', () => {
             isRight = false
             isLeft = false
+
+
+
         })
 
     })
@@ -186,7 +197,7 @@ window.addEventListener('load', () => {
 
 
     restartBtn.addEventListener('click', () => {
-        restart()
+        // restart()
 
 
 

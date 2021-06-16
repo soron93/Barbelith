@@ -11,7 +11,8 @@ Who's Jumping is based on the existential scene in the movie Bandersnatch where 
 MVP definition, deliverables.
 - game will have a player who jumps when game starts
 - player will be able to move left & right with left and right keyboard arrows
-- smiley faces will seemingly move upward for collecting points
+- smiley faces will seemingly move upward for 
+collecting points
 - lighting bolts will seemingly move upward to collide and end game
 - at game end screen will pan upwards to where the player jumped 
 
