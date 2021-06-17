@@ -40,8 +40,8 @@ function createBlocks() {
 
     if (counter == 60) {
         let block = {
-            width: Math.floor(Math.random() * 120 + 75),
-            x: Math.floor(Math.random() * (canvas.width - 15)),
+            width: Math.floor(Math.random() * 130 + 95),
+            x: Math.floor(Math.random() * (canvas.width - 5)),
             y: canvas.height,
         }
 
@@ -69,7 +69,7 @@ function drawBlocks() {
         ctx.fillStyle = 'black'
         ctx.fillRect(obsticles[i].x, obsticles[i].y, obsticles[i].width, blockHeight)
         ctx.closePath()
-        obsticles[i].y -= 8
+        obsticles[i].y -= 18
         if (ballX > obsticles[i].x && ballX < obsticles[i].x + obsticles[i].width && ballY + radius > obsticles[i].y && ballY + radius < blockHeight + obsticles[i].y) {
             gameOver = true
 
