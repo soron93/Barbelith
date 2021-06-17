@@ -2,10 +2,6 @@
 # Barbelith
 [Link Deploy](http://github.com)
 
-
-<!-- ## Description
-Who's Jumping is based on the existential scene in the movie Bandersnatch where a player jumps off a building plummeting to their death only to prove that their life will continue to go on in multiple realities. The object of the game is to fall as long as possible while collecting points by moving left & right and avoiding collisions beore their ultimate demise. -->
-
 ## Description
 Arconangles are on a collision course towards Barbelith; a red satellite object where you are in control by using your keyboards left and right arrow keys to evade incoming objects.
 
@@ -24,10 +20,13 @@ MVP definition, deliverables.
 
 
 ## Data structure
-Classes and methods definition. Or functions.
-
-# Scritp.js
-- 
+- createBlocks()
+- drawBall()
+- drawBlocks()
+- checkScore()
+- animate()
+- start()
+- restart()
 
 ## States Transitions
 Definition of the different states and their transition (transition functions)
@@ -39,6 +38,22 @@ Definition of the different states and their transition (transition functions)
 
 ## Task
 Task definition in order of priority
+- main - startScreen
+- main - eventListeners
+- main - gameScreen 
+- main - gameOverScreen
+- game - drawCanvas
+- game - gameLoop
+- circle - drawCircle
+- circle - moveCircle
+- rect - drawRectangle
+- rect - moveRectangle
+- rect - multipleRectangles
+- rect - randomizeRectangles
+- game - calculateCollision
+- game - gameOver
+- game - restart
+
 
 
 ## Additional Links
