@@ -24,17 +24,12 @@ let currentBlocks = [];
 let incrX = 3, incrY = 3;
 let blockHeight = 20;
 let obsticles = []
-
-
-
 let startAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/Zander%20Noriega%20-%20Darker%20Waves.mp3.ogg")
 let gameOverAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/tnt.mp3.ogg")
 
 startAudio.volume = 0.3;
 gameOverAudio.volume = 0.3;
 
-
-// YOUR_AUDIO_VARIABLE.volume = 0.1
 
 function createBlocks() {
 
@@ -92,12 +87,6 @@ function checkScore() {
 
 
 
-
-
-
-
-
-
 //Basic Animation Template 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -112,8 +101,7 @@ function animate() {
 
     //Draw Ball
     drawBall()
-    // ballX = ballX + incrX
-    // ballX = ballX - incrX
+
 
     if (isRight && ballX < canvas.width - radius) {
         ballX = ballX + 10
@@ -153,7 +141,6 @@ function start() {
     theEnd.style.display = 'none'
     startBtn.style.display = 'none'
     info.style.display = 'none'
-    // startScreen.style.disply = 'none'
     animate()
     startAudio.play()
 }
