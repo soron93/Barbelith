@@ -64,6 +64,7 @@ Task definition in order of priority
 
 
 ### Slides
-[Link Slides.com](http://slides.com)
+[Presentation Slides](https://docs.google.com/presentation/d/1AguNbNck6Yt7tfl0nvzGS4zFzRTKKVpNMEU6GtQP16Y/edit#slide=id.gc6f90357f_0_13)
 
+### Game
 [Game link](https://soron93.github.io/Barbelith/)
