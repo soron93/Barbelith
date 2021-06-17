@@ -20,19 +20,19 @@ let ballX = canvas.width / 2, ballY = 50, radius = 20
 let isLeft = false, isRight = false
 let counter = 0;
 let score = 0;
-let currentBlocks = [];
 let incrX = 3, incrY = 3;
 let blockHeight = 20;
 let obsticles = []
 let startAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/Zander%20Noriega%20-%20Darker%20Waves.mp3.ogg")
 let gameOverAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/tnt.mp3.ogg")
 
-startAudio.volume = 0.3;
+startAudio.volume = 0.1;
 startAudio.loop = true;
-gameOverAudio.volume = 0.3;
+gameOverAudio.volume = 0.1;
 
 
-// Rectangles random behavior lays here
+//Rectangles random behavior is generated using an "if" statement that multiples the 
+//rectangles and with a math.random() method to randomize the width of the rectangels 
 function createBlocks() {
 
     if (counter == 60) {
@@ -51,7 +51,8 @@ function createBlocks() {
 
 }
 
-// Circle is created here
+// Circle is created here using canvas. the drawBall funciton is called again
+// with an eventListener to move the ball horizantally across the X axis
 function drawBall() {
     ctx.beginPath()
     ctx.fillStyle = '#a30505'
@@ -60,14 +61,15 @@ function drawBall() {
     ctx.closePath()
 }
 
-//Rectangles are created
+//Rectangles are created using a "for loop" to make the initial block
+//and "if" statement is for the collision which points to the gameOver function
 function drawBlocks() {
     for (let i = 0; i < obsticles.length; i++) {
         ctx.beginPath()
         ctx.fillStyle = 'black'
         ctx.fillRect(obsticles[i].x, obsticles[i].y, obsticles[i].width, blockHeight)
         ctx.closePath()
-        obsticles[i].y -= 15
+        obsticles[i].y -= 6
         if (ballX > obsticles[i].x && ballX < obsticles[i].x + obsticles[i].width && ballY + radius > obsticles[i].y && ballY + radius < blockHeight + obsticles[i].y) {
             gameOver = true
 
@@ -76,7 +78,8 @@ function drawBlocks() {
     }
 }
 
-//Scoring logic 
+//Scoring logic is defined by a "for loop" and a "if" statment when the rectangle
+//reached the top of the canvas a point is calculated  
 function checkScore() {
     for (let i = 0; i < obsticles.length; i++) {
         if (obsticles[i].y < 0) {
@@ -126,31 +129,35 @@ function animate() {
         theEnd.style.display = 'block'
         startAudio.pause()
         gameOverAudio.play()
+
     } else {
         intervalId = requestAnimationFrame(animate)
     }
 
 }
 
-// Start logic
+// Start logic, hides the restart buttonand ending screen and begins by 
+//displayng the canvas and starting the audio
 function start() {
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'
     theEnd.style.display = 'none'
+    startScreen.style.display = 'none'
     startBtn.style.display = 'none'
     info.style.display = 'none'
     animate()
     startAudio.play()
 }
 
-// Reloading the game
+// Reloadd the game
 function restart() {
     location.reload()
 
 
 }
 
-// All event funcitons wll begin in the windows event load listener
+// All event funcitons wll begin in the windows event load listener. 
+//"IF's" point to variables with boolena values to control the arrow keys
 window.addEventListener('load', () => {
 
     canvas.style.display = 'none' // hides canvas
