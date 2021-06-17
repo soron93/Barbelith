@@ -69,7 +69,7 @@ function drawBlocks() {
         ctx.fillStyle = 'black'
         ctx.fillRect(obsticles[i].x, obsticles[i].y, obsticles[i].width, blockHeight)
         ctx.closePath()
-        obsticles[i].y -= 18
+        obsticles[i].y -= 15
         if (ballX > obsticles[i].x && ballX < obsticles[i].x + obsticles[i].width && ballY + radius > obsticles[i].y && ballY + radius < blockHeight + obsticles[i].y) {
             gameOver = true
 
