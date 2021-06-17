@@ -10,7 +10,7 @@ canvas.style.border = '6px solid black'; // sets canvas border
 // paintbrush
 let ctx = canvas.getContext('2d');
 
-// DOM start & restart buttons
+// Variables and auido properties
 let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
 let theEnd = document.querySelector('#gameOver')
@@ -28,9 +28,11 @@ let startAudio = new Audio("https://opengameart.org/sites/default/files/audio_pr
 let gameOverAudio = new Audio("https://opengameart.org/sites/default/files/audio_preview/tnt.mp3.ogg")
 
 startAudio.volume = 0.3;
+startAudio.loop = true;
 gameOverAudio.volume = 0.3;
 
 
+// Rectangles random behavior lays here
 function createBlocks() {
 
     if (counter == 60) {
@@ -49,6 +51,7 @@ function createBlocks() {
 
 }
 
+// Circle is created here
 function drawBall() {
     ctx.beginPath()
     ctx.fillStyle = '#a30505'
@@ -57,7 +60,7 @@ function drawBall() {
     ctx.closePath()
 }
 
-//blocks
+//Rectangles are created
 function drawBlocks() {
     for (let i = 0; i < obsticles.length; i++) {
         ctx.beginPath()
@@ -73,7 +76,7 @@ function drawBlocks() {
     }
 }
 
-
+//Scoring logic 
 function checkScore() {
     for (let i = 0; i < obsticles.length; i++) {
         if (obsticles[i].y < 0) {
@@ -84,10 +87,7 @@ function checkScore() {
     }
 }
 
-
-
-
-//Basic Animation Template 
+//Basic Animation
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -132,9 +132,7 @@ function animate() {
 
 }
 
-
-
-
+// Start logic
 function start() {
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'
@@ -145,6 +143,7 @@ function start() {
     startAudio.play()
 }
 
+// Reloading the game
 function restart() {
     location.reload()
 
